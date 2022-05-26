@@ -32,7 +32,7 @@ public class Reply {
 	
 	@ManyToOne//하나의 게시글에 여러 답글이 들어갈수 있다.
 	@JoinColumn(name="boardid")
-	private Board Board;
+	private Board board;
 	
 	@ManyToOne//유저 한 명은 여러 답글을 달수있다.
 	@JoinColumn(name="userid")
