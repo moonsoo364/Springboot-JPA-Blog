@@ -3,7 +3,12 @@ let index={
 		$("#btn-save").on("click",()=>{//function(){}, ()=>{} this를 바인딩 하기위해
 			this.save();
 		});
+		
+		$("#btn-update").on("click",()=>{//function(){}, ()=>{} this를 바인딩 하기위해
+			this.update();
+		});
 	},
+	
 	
 	save: function(){
 		/*alert("회원가입 완료");*/
@@ -21,6 +26,31 @@ let index={
 		dataType:"json"//서버에서 응답이 왔을 때 모든것이 문자열(생긴것이 JSON이라면)->js 오브젝트로 변경함
 	}).done(function(resp){
 		alert("회원가입이 완료되었습니다.");
+		console.log(resp);
+		location.href="/";
+	}).fail(function(){
+		alert(JSON.stringfy(error));
+		
+	})
+	
+	},
+	update: function(){
+		/*alert("회원가입 완료");*/
+		let data={
+			
+			password: $("#password").val(),
+			id: $("#id").val(),
+			email: $("#email").val()
+		};
+		//ajax호출시 default가 비동기 호출
+	$.ajax({//회원가입 수행 요청 
+		type:"PUT",
+		url:"/user",
+		data:JSON.stringify(data),//http body 데이터
+		contentType:"application/json; charset=utf-8",
+		dataType:"json"//서버에서 응답이 왔을 때 모든것이 문자열(생긴것이 JSON이라면)->js 오브젝트로 변경함
+	}).done(function(resp){
+		alert("회원수정이 완료되었습니다.");
 		console.log(resp);
 		location.href="/";
 	}).fail(function(){
